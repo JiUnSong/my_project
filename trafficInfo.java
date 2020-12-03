@@ -18,23 +18,23 @@ public class trafficInfo extends androidx.fragment.app.Fragment {
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
         java.util.List<ExpandableListAdapter.Item> data = new ArrayList<>();
-        ExpandableListAdapter.Item places = new ExpandableListAdapter.Item(ExpandableListAdapter.HEADER, "버스번호", "14");//routes.route[3].subroutes[1].num_stops);
+        long stop_count = 14;
+        String stopCnt = String.valueOf(stop_count) + "개";
+        ExpandableListAdapter.Item places = new ExpandableListAdapter.Item(ExpandableListAdapter.HEADER, "50-2번", stopCnt, "23분");//routes.route[3].subroutes[1].num_stops);
         places.invisibleChildren = new ArrayList<>();
-        places.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 삼성역", "- 역삼역"));
-        places.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 삼성역", "- 역삼역"));
-        places.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 삼성역", "- 역삼역"));
-        places.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 삼성역", "- 역삼역"));
+        places.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 도보", "- 0.1km", "1분"));
+        places.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "청주 시외버스터미널", "충북대학교 정문", "20분"));
+        places.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 도보", "- 0.3km", "2분"));
 
         data.add(places);
 
-//        ExpandableListAdapter.Item info = new ExpandableListAdapter.Item(ExpandableListAdapter.HEADER, "147번");
-//        info.invisibleChildren = new ArrayList<>();
-//        info.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 금호역"));
-//        info.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 약수역"));
-//        info.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 청구역"));
-//        info.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 몰라"));
-//
-//        data.add(info);
+        ExpandableListAdapter.Item places2 = new ExpandableListAdapter.Item(ExpandableListAdapter.HEADER, "823번", stopCnt, "30분");//routes.route[3].subroutes[1].num_stops);
+        places2.invisibleChildren = new ArrayList<>();
+        places2.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 도보", "- 0.1km", "1분"));
+        places2.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "청주 시외버스터미널", "복대초등학교", "33분"));
+        places2.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "- 도보", "- 0.5km", "3분"));
+
+        data.add(places2);
 
         recyclerview.setAdapter(new ExpandableListAdapter(data));
         return view;

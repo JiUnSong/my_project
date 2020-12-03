@@ -51,7 +51,8 @@ public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 final ListHeaderViewHolder itemController = (ListHeaderViewHolder) holder;
                 itemController.refferalItem = item;
                 itemController.header_title.setText(item.busNum);
-                itemController.num_stops.setText(String.valueOf(item.stopCnt));
+                itemController.num_stops.setText(item.stopCnt);
+                itemController.duration_info.setText(item.duration_text);
 
                 itemController.btn_expand_toggle.setOnClickListener(v -> {
                     if (item.invisibleChildren == null) {
@@ -65,9 +66,9 @@ public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         notifyItemRangeRemoved(pos + 1, count);
                         itemController.btn_expand_toggle.setImageResource(R.drawable.bus);
                     } else {
-                            int pos = data.indexOf(itemController.refferalItem);
-                            int index = pos + 1;
-                            for (Item i : item.invisibleChildren) {
+                        int pos = data.indexOf(itemController.refferalItem);
+                        int index = pos + 1;
+                        for (Item i : item.invisibleChildren) {
                             data.add(index, i);
                             index++;
                         }
@@ -102,6 +103,10 @@ public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 itemController1.refferalItem = item;
                 itemController1.departure_stop.setText(item.departure_stop);
                 itemController1.arrival_stop.setText(item.arrival_stop);
+                itemController1.duration_mini.setText(item.duration_mini);
+                if(!item.departure_stop.equals("- 도보")){
+                    itemController1.route_line.setText("|");
+                }
                 break;
         }
     }
@@ -119,7 +124,7 @@ public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private static class ListHeaderViewHolder extends RecyclerView.ViewHolder {
         public android.widget.TextView header_title;
-        public android.widget.TextView arrival_info;
+        public android.widget.TextView duration_info;
         public ImageView btn_expand_toggle;
         public Item refferalItem;
         public LinearLayout show_detail;
@@ -128,37 +133,56 @@ public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         public ListHeaderViewHolder(android.view.View itemView) {
             super(itemView);
             header_title = (android.widget.TextView) itemView.findViewById(R.id.header_title);
-            arrival_info = (android.widget.TextView) itemView.findViewById(R.id.arrival_info);
+            duration_info = (android.widget.TextView) itemView.findViewById(R.id.duration_info);
             num_stops = (android.widget.TextView) itemView.findViewById(R.id.stationNum);
             btn_expand_toggle = (ImageView) itemView.findViewById(R.id.imageView);
             show_detail = (LinearLayout) itemView.findViewById(R.id.showTrafficDetail);
 
         }
     }
+
     private static class ListChildViewHolder extends RecyclerView.ViewHolder {
         public android.widget.TextView departure_stop;
         public android.widget.TextView arrival_stop;
+        public android.widget.TextView duration_mini;
+        public android.widget.TextView route_line;
         public Item refferalItem;
+
 
         public ListChildViewHolder(android.view.View itemView) {
             super(itemView);
             departure_stop = (android.widget.TextView) itemView.findViewById(R.id.departure_stop);
             arrival_stop = (android.widget.TextView) itemView.findViewById(R.id.arrival_stop);
+            duration_mini = (android.widget.TextView) itemView.findViewById(R.id.duration_mini);
+            route_line = (android.widget.TextView) itemView.findViewById(R.id.route_line);
         }
     }
 
     public static class Item {
         public int type;
         public String busNum;
-        public long stopCnt;
+        public String stopCnt;
         public String departure_stop;
+        public String duration_text;
+        public String duration_mini;
         public String arrival_stop;
         public java.util.List<Item> invisibleChildren;
 
-        public Item(int type, String departure_stop, String arrival_stop){
-            this.type = type;
-            this.departure_stop = departure_stop;
-            this.arrival_stop = arrival_stop;
+        public Item(int type, String a, String b, String c) {
+            if (type == HEADER) {
+                this.type = type;
+                this.busNum = a;
+                this.stopCnt = b;
+                this.duration_text = c;
+            }
+            if(type == CHILD){
+                this.type = type;
+                this.departure_stop = a;
+                this.arrival_stop = b;
+                this.duration_mini = c;
+            }
         }
+
+
     }
 }
