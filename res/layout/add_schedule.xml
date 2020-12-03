@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="일정 제목" />
+
+        <EditText
+            android:id="@+id/et_contents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="내용" />
+
+        <EditText
+            android:id="@+id/start_location"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="출발지" />
+        <EditText
+            android:id="@+id/end_location"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="도착지" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:stretchColumns="*">
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/tv_start_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="시작 날짜"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tv_start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="시작 시간"
+                    android:textSize="20sp" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/tv_end_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="끝 날짜"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tv_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="끝 시간"
+                    android:textSize="20sp" />
+
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/btn_add_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="addSchedule"
+            android:text="저장" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
